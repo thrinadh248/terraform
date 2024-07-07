@@ -1,0 +1,147 @@
+Azure Function App with Monitoring and Alerts
+Overview
+
+This Terraform project provisions an Azure Function App along with Application Insights, Log Analytics Workspace, and alerts using Azure Monitor. It includes setting up a resource group, app service plan, storage account, application insights, and alerting for anomalies and HTTP 5xx errors.
+Table of Contents
+
+    Prerequisites
+    Folder Structure
+    Installation
+    Usage
+    Configuration
+    Additional Notes
+
+Prerequisites
+
+    Terraform (version ~> 3.0)
+    An Azure account with appropriate permissions
+
+Folder Structure
+
+css
+
+project-root/
+│
+├── main.tf
+├── variables.tf
+├── outputs.tf
+├── provider.tf
+└── README.md
+
+Installation
+
+Follow these steps to set up and deploy the project:
+
+    Clone the repository
+
+    bash
+
+git clone <repository-url>
+
+Navigate into the project directory
+
+bash
+
+cd <project-directory>
+
+Initialize Terraform
+
+bash
+
+terraform init
+
+Apply the configuration
+
+bash
+
+    terraform apply
+
+Usage
+
+To use this Terraform configuration, follow these common commands:
+
+    Plan changes before applying
+
+    bash
+
+terraform plan
+
+Apply the Terraform configuration
+
+bash
+
+terraform apply
+
+Destroy resources
+
+bash
+
+    terraform destroy
+
+Configuration
+
+You can customize the following variables in the variables.tf file to fit your needs:
+
+    resource_group_name (default: "thrinadh-alerts")
+    location (default: "East US")
+    app_service_plan_name (default: "thrinadh-app-service-plan")
+    function_app_name (default: "thrinadh-function-app")
+    application_insights_name (default: "thrinadh-app-insights")
+    log_analytics_workspace_name (default: "thrinadh-law")
+    alert_email (default: "thrinadh0248@gmail.com")
+
+Example Configuration
+
+Here's an example of how to configure the variables in variables.tf:
+
+hcl
+
+variable "resource_group_name" {
+  type    = string
+  default = "thrinadh-alerts"
+}
+
+variable "location" {
+  type    = string
+  default = "East US"
+}
+
+variable "app_service_plan_name" {
+  type    = string
+  default = "thrinadh-app-service-plan"
+}
+
+variable "function_app_name" {
+  type    = string
+  default = "thrinadh-function-app"
+}
+
+variable "application_insights_name" {
+  type    = string
+  default = "thrinadh-app-insights"
+}
+
+variable "log_analytics_workspace_name" {
+  type    = string
+  default = "thrinadh-law"
+}
+
+variable "alert_email" {
+  type    = string
+  default = "thrinadh0248@gmail.com"
+}
+
+Additional Notes
+
+    Resource Naming: Make sure the names for Azure resources are unique within your subscription.
+    Alerts: Alerts are set up for anomalies in Function App failures and HTTP 5xx errors.
+    Dependencies: The resources have dependencies to ensure correct provisioning order.
+
+Outputs
+
+The following outputs are defined:
+
+    function_app_name: Name of the Azure Function App
+    application_insights_instrumentation_key: Instrumentation Key for Application Insights (sensitive)
+    log_analytics_workspace_id: ID of the Log Analytics Workspace
+    alert_email: Email address for alerts
